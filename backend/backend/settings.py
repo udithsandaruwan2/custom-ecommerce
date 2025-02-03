@@ -40,6 +40,9 @@ INSTALLED_APPS = [
 
     # Base app
     'base.apps.BaseConfig',
+
+    # Rest framework
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
