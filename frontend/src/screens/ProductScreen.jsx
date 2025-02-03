@@ -2,11 +2,19 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap';
 import Rating from '../components/Rating';
-import products from '../products';
+import { useState, useEffect } from 'react'
 
 function ProductScreen() {
     const { pk } = useParams();
-    const product = products.find((p) => p._id === pk);
+    const [product, setProduct] = useState({});
+    useEffect(() => {
+        const fetchProduct = async () => {
+            const response = await fetch(`/api/products/${pk}`);
+            const data = await response.json();
+            setProduct(data);
+        }
+        fetchProduct();
+    }, [pk]);
 
     return (
         <div>
